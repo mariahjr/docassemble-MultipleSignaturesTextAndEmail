@@ -5,6 +5,9 @@ metadata:
   example start: 1
   example end: 37
 ---
+modules:  
+  - docassemble.VirtualCourtToolbox.shortenURL
+---
 objects:
   - user: Person
   - witnesses: DAList.using(object_type=Person, there_are_any=True, complete_attribute='complete')
@@ -34,21 +37,24 @@ code: |
   emails_sent = True
 ---
 code: |
-  send_sms(task='send signature link', to=link_cell,template=interview_link)
+  y = shortenMe(witnesses[i].sign_url)
 ---
 code: |
-  if witness[i].email_or_text == 'Text': 
-    send_sms(task='send witness signature link', to=witness[i].link_cell,template=interview_link)
+  send_sms(task='send signature link', to=link_cell,template=witnesses[i].sms_template)
+---
+code: |
+  if witnesses[i].email_or_text == 'text': 
+    send_sms(task='send witness signature link', to=witnesses[i].link_cell,template=witnesses[i].sms_template)
     witnesses[i].notified = True
   else:
-    send_email(to=witness, template=witness.email_template)
+    send_email(to=witnesses, template=witnesses[i].email_template)
     witnesses[i].notified = True
 ---
-template: interview_link
+template: witnesses[i].sms_template
 content: |
-  Hi, ${ user.name.text }  sent you a form from MassAccess. To sign the form,
-  click the link below:  
-  ${interview_url()}
+  Dear ${ witnesses[i] },
+  Your signature needed on a document for ${ user }.  
+  ${ y.shortenedURL }
 ---
 mandatory: True
 code: |

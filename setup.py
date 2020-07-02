@@ -43,9 +43,9 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.MultipleSignaturesTextAndEmail',
-      version='0.0.1',
+      version='0.0.1.1',
       description=('A docassemble extension.'),
-      long_description='# docassemble.motiontomakeamotionmariahjr\r\n\r\nThis is a snippet of runnable code that we are creating to have multiple non-user signers (co-defendants, witnesses) select if they want to sign the final document via text or email, and it wil be sent to them accordingly.\r\n## Author\r\n\r\nmariah@masslegalhelp.org\r\n\r\n',
+      long_description='# docassemble.motionformotionmariahjr\r\n\r\nThis is a snippet of runnable code that we are creating to have multiple non-user signers (co-defendants, witnesses) select if they want to sign the final document via text or email, and it wil be sent to them accordingly.\r\n## Author\r\n\r\nmariah@masslegalhelp.org\r\n\r\n',
       long_description_content_type='text/markdown',
       author='',
       author_email='mariah@masslegalhelp.org',
